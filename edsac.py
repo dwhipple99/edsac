@@ -83,7 +83,7 @@ version="0.1"
 class EDSAC():
    def __init__(self, name):
      self.name = name
-     print "Creating new EDSAC machine with name", name,"\n"
+     print("Creating new EDSAC machine with name", name,"\n")
      # This is only used to paginate during memory dumps
      self.pageSize = 24
 
@@ -212,7 +212,8 @@ def cli(object):
 
    inv_opcodes = {}
 
-   for k, v in opcodes.iteritems():
+   #for k, v in opcodes.iteritems():
+   for k, v in opcodes.items():
        inv_opcodes[v] = inv_opcodes.get(v, [])
        inv_opcodes[v].append(k)
 
@@ -251,22 +252,22 @@ def cli(object):
       hour=time_now.tm_hour
       minute=time_now.tm_min
       second=time_now.tm_sec
-      print "Welcome to the EDSAC simulator!"
-      print "Version",version,", start time is ",hour,":",minute,":",second
-      print "\nEntering the CLI for ", object.name," simulator."
-      print "Machine memory, total words=",object.words,", word size=",object.wordSize
-      print "                total bits=",(object.bits-1),", starting at 0 and ending at ",(object.bits-2)
-      print "\nThe commands available are:\n"
+      print("Welcome to the EDSAC simulator!")
+      print("Version",version,", start time is ",hour,":",minute,":",second)
+      print("\nEntering the CLI for ", object.name," simulator.")
+      print("Machine memory, total words=",object.words,", word size=",object.wordSize)
+      print("                total bits=",(object.bits-1),", starting at 0 and ending at ",(object.bits-2))
+      print("\nThe commands available are:\n")
       for command, command_help in commands.items():
-          print "{0:12} - {1}".format(command, command_help)
-      print "\n"
+          print("{0:12} - {1}".format(command, command_help))
+      print("\n")
 
 
 # This resets the entire simulator
 #
    def reset():
       machineName = object.name
-      i = raw_input("Press enter to simulate pressing reset button on machine.")
+      i = input("Press enter to simulate pressing reset button on machine.")
       os.system('clear')
       newMachine=EDSAC(machineName)
       cli(newMachine)
@@ -275,7 +276,7 @@ def cli(object):
 #
    def restart():
       machineName = object.name
-      i = raw_input("Press enter to restart EDSAC with freshly initialized machine and current machine name...")
+      i = input("Press enter to restart EDSAC with freshly initialized machine and current machine name...")
       os.system('clear')
       newMachine=EDSAC(machineName)
       cli(newMachine)
@@ -291,8 +292,8 @@ def cli(object):
 
 # This sets a bit in memory, used for debugging.
    def setbit():
-      print "Memory starts at location 0 and ends at location",object.bits-1
-      bitToSet = raw_input("Please enter the bit location to set to 1 ->")
+      print("Memory starts at location 0 and ends at location",object.bits-1)
+      bitToSet = input("Please enter the bit location to set to 1 ->")
       if (bitToSet == ""):
          do_nothing()
          return
@@ -300,8 +301,8 @@ def cli(object):
 
 # This clears a bit in memory, used for debugging.
    def clearbit():
-      print "Memory starts at location 0 and ends at location",object.bits-1
-      bitToSet = raw_input("Please enter the bit location to set to 0 ->")
+      print("Memory starts at location 0 and ends at location",object.bits-1)
+      bitToSet = input("Please enter the bit location to set to 0 ->")
       if (bitToSet == ""):
          do_nothing()
          return
@@ -309,43 +310,43 @@ def cli(object):
 
 # This prints the contents of the order tank
    def ot():
-      print "Printing value of order tank register (starting bit 0, ending bit 16):"
-      print "Order Tank Register:",
+      print("Printing value of order tank register (starting bit 0, ending bit 16):")
+      print("Order Tank Register:",)
       for bit in range(0,(object.otSize)):
-          print "{0:1}".format(testBit(object.ot,bit)),
-      print "\n"
+          print("{0:1}".format(testBit(object.ot,bit)),)
+      print("\n")
 
 # This prints the contents of the multiplier
    def multiplier():
-      print "Printing value of multiplier register (starting bit 0, ending bit 34):"
-      print "Multiplier Register:",
+      print("Printing value of multiplier register (starting bit 0, ending bit 34):")
+      print("Multiplier Register:",)
       for bit in range(0,(object.multiplierSize)):
-          print "{0:1}".format(testBit(object.multiplier,bit)),
-      print "\n"
+          print("{0:1}".format(testBit(object.multiplier,bit)),)
+      print("\n")
 
 # This prints the contents of the multiplicand
    def multiplicand():
-      print "Printing value of multiplicand register (starting bit 0, ending bit 34):"
-      print "Multiplicand Register:",
+      print("Printing value of multiplicand register (starting bit 0, ending bit 34):")
+      print("Multiplicand Register:",)
       for bit in range(0,(object.multiplicandSize)):
-          print "{0:1}".format(testBit(object.multiplicand,bit)),
-      print "\n"
+          print("{0:1}".format(testBit(object.multiplicand,bit)),)
+      print("\n")
 
 # This prints the contents of the sequence control register
    def scr():
-      print "Printing value of sequence control register (starting bit 0, ending bit 9):"
-      print "Sequence Control Register:",
+      print("Printing value of sequence control register (starting bit 0, ending bit 9):")
+      print("Sequence Control Register:",)
       for bit in range(0,(object.scrSize)):
-          print "{0:1}".format(testBit(object.scr,bit)),
-      print "\n"
+          print("{0:1}".format(testBit(object.scr,bit)),)
+      print("\n")
 
 # This prints the contents of the accumulator
    def acc():
-      print "Printing value of accumulator (starting bit 0, ending bit 70):"
-      print "Accumulator:",
+      print("Printing value of accumulator (starting bit 0, ending bit 70):")
+      print("Accumulator:",)
       for bit in range(0,(object.accSize)):
-          print "{0:1}".format(testBit(object.acc,bit)),
-      print "\n"
+          print("{0:1}".format(testBit(object.acc,bit)),)
+      print("\n")
 
 # This clears the screen
    def clear():
@@ -366,36 +367,36 @@ def cli(object):
 
 # This creates an instantiantion of an EDSAC object.
    def create():
-      c2 = raw_input("Please enter a name for your EDSAC->")
+      c2 = input("Please enter a name for your EDSAC->")
       newEdsac = EDSAC(c2)
       cli(newEdsac)
 
 # This prints the contents of memory.
    def memory():
-      print "Dumping contents of memory:"
-      print "---------------------------"
-      print "Total words in memory is ", object.words
-      print "Word size is ", object.wordSize
-      print "Total bits in memory is ", object.bits-1
+      print("Dumping contents of memory:")
+      print("---------------------------")
+      print("Total words in memory is ", object.words)
+      print("Word size is ", object.wordSize)
+      print("Total bits in memory is ", object.bits-1)
       currentWord=0
       for bit in range(0,(object.bits-1)):
           if (bit != 0):
              if (((bit+1) % object.wordSize) == 0):
-                print "{0:1}".format(testBit(object.memory,bit))
+                print ("{0:1}".format(testBit(object.memory,bit)))
                 currentWord = currentWord + 1
                 # used to paginate
                 if ((currentWord % object.pageSize) == 0):
-                   i = raw_input("Press enter to continue or \"q\" to quit -> ")
+                   i = input("Press enter to continue or \"q\" to quit -> ")
                    if (i == 'q'):
                       break;
                 if (currentWord != object.words):
-                   print "Word ({0})-".format(currentWord),
+                   print("Word ({0})-".format(currentWord),)
              else:
-                print "{0:1}".format(testBit(object.memory,bit)),
+                print("{0:1}".format(testBit(object.memory,bit)),)
           else:
-              print "Word ({0})-".format(currentWord),
-              print "{0:1}".format(testBit(object.memory,bit)),
-      print "\n"
+              print("Word ({0})-".format(currentWord),)
+              print("{0:1}".format(testBit(object.memory,bit)),)
+      print("\n")
 
 
       #print(object.bits, len(object.memory), (len(object.memory) * object.wordSize) - object.bits, bin(object.memory[0]))
@@ -414,7 +415,7 @@ def cli(object):
        i = 1
        address = 0
        while (myIsDigit(line[i])):
-          #print "i=", i, "Line[i]=",line[i]
+          #print("i=", i, "Line[i]=",line[i])
           address = 10*address + int(line[i])
           i = i + 1
        operandType = line[i]
@@ -424,19 +425,19 @@ def cli(object):
 # This implements the T command (opcode)
    def execute_T():
       if (object.debugMode):
-          print "Executing T order, program counter is ", object.programCounter
+          print("Executing T order, program counter is ", object.programCounter)
       if (object.programCounter == 31):
           if (object.debugMode):
-             print "First instruction, marking the beginning"
+             print("First instruction, marking the beginning")
       else:
-          #print "In T order, not first"
+          #print("In T order, not first")
           if (object.wordHasAddress[object.programCounter] == True):
-             #print "Transferring accumulator to memory location", object.wordAddress[object.programCounter]
-             #print "Zeroing accumulator.."
+             #print("Transferring accumulator to memory location", object.wordAddress[object.programCounter])
+             #print("Zeroing accumulator..")
              for bit in range(0, (object.accSize)):
                  clearBit(object.acc, bit)
           else:
-             #print "Zeroing accumulator.."
+             #print("Zeroing accumulator..")
              for bit in range(0, (object.accSize)):
                  clearBit(object.acc, bit)
 
@@ -444,39 +445,39 @@ def cli(object):
    def getAddressValue(address):
        valueList = []
        if (object.debugMode):
-          print "Getting value at address", address
+          print("Getting value at address", address)
        bitNumber = (address * object.wordSize) + 6
-       #print "BitNumber=", bitNumber
+       #print("BitNumber=", bitNumber)
        for bit in range(bitNumber, bitNumber+10):
            if (testBit(object.memory, bit) == 1):
                valueList.append('1')
            else:
                valueList.append('0')
-       # print "Value list = ", valueList
+       # print("Value list = ", valueList)
        valueStr = ''.join(valueList)
        value = int(valueStr, 2)
-       #print "Value=", value
+       #print("Value=", value)
        return value
        #for bit in range(bitNumber, (object.wordSize)):
        #    accStr = str(bit)
-       #print "accumlator string = ", accStr
+       #print("accumlator string = ", accStr)
 
 # This gets the Order value (first 5 bits) in an address
    def getOrderValue(address):
        valueList = []
-       #print "Getting order value at address", address
+       #print("Getting order value at address", address)
        bitNumber = (address * object.wordSize)
-       #print "BitNumber=", bitNumber
+       #print("BitNumber=", bitNumber)
        for bit in range(bitNumber, bitNumber+5):
            if (testBit(object.memory, bit) == 1):
                valueList.append('1')
            else:
                valueList.append('0')
-       #print "Value list = ", valueList
+       #print("Value list = ", valueList)
        valueStr = ''.join(valueList)
-       #print "Value String is ", valueStr
+       #print("Value String is ", valueStr)
        #value = int(valueStr, 2)
-       #print "Value=", value
+       #print("Value=", value)
        return valueStr
 
 # This gets the current accumulator value
@@ -488,10 +489,10 @@ def cli(object):
                accList.append('1')
            else:
                accList.append('0')
-       #print "accumlator list = ", accList
+       #print("accumlator list = ", accList)
        accStr = ''.join(accList)
        accInt = int(accStr,2)
-       #print "acc=", accInt
+       #print("acc=", accInt)
        return accInt
 
 # This adds a value to the accumulator
@@ -500,50 +501,50 @@ def cli(object):
        binaryValue = str(bin(value)[2:].zfill(70))
        accumulator = getAccValue()
        newAcc = accumulator + value
-       #print "New acc will be", newAcc
+       #print("New acc will be", newAcc)
        newBinaryAcc = str(bin(newAcc)[2:].zfill(70))
-       #print "Size of newBinaryAcc", len(newBinaryAcc)
-       #print "Adding Value at address ", value, "to accumulator, accumulator is ", accumulator, "value is ", value
-       #print "New binary value is ", newBinaryAcc
+       #print("Size of newBinaryAcc", len(newBinaryAcc))
+       #print("Adding Value at address ", value, "to accumulator, accumulator is ", accumulator, "value is ", value)
+       #print("New binary value is ", newBinaryAcc)
        for bit in range(0, (object.accSize-1)):
           if (newBinaryAcc[bit] == '1'):
               setBit(object.acc, bit+1)
-              #print "setting Bit to 1 = ", bit
+              #print("setting Bit to 1 = ", bit)
           else:
               clearBit(object.acc, bit+1)
-              #print "setting Bit to 0 = ", bit
+              #print("setting Bit to 0 = ", bit)
        newValue = getAccValue()
-       #print "New accumulator value is ", newValue
+       #print("New accumulator value is ", newValue)
        return
 
 # This implements the S command (opcode)
    def execute_S():
        if (object.debugMode):
-          print 'Executing order S'
+          print('Executing order S')
    #     TODO - Need to implement order S
 
 # This implements the G command (opcode)
    def execute_G():
        if (object.debugMode):
-          print "Executing order G"
+          print("Executing order G")
        if (testBit(object.acc,0) == 0):
            accNegative = False
-           #print "Accumulator is Positive"
+           #print("Accumulator is Positive")
        else:
            accNegative = True
-           #print "Accumulator is Negative"
+           #print("Accumulator is Negative")
        if (accNegative == False):
            jumpAddress = object.wordAddress[object.programCounter]
            if (object.debugMode):
-              print "Jumping to address", jumpAddress
+              print("Jumping to address", jumpAddress)
            object.programCounter = jumpAddress-1
            updatedSCR = str(bin(object.programCounter)[2:].zfill(10))
            copyPCtoSCR(updatedSCR)
        else:
            if (object.debugMode):
-              print "Not Jumping, Accumulator is Negative"
+              print("Not Jumping, Accumulator is Negative")
        if (object.debugMode):
-          print "New program counter is ", object.programCounter
+          print("New program counter is ", object.programCounter)
        return
 
 # This implements the U command (opcode)
@@ -554,16 +555,16 @@ def cli(object):
        writeBit = writeAddress * object.wordSize + 6
        object.wordAddress[writeAddress] = accValue
        if (object.debugMode):
-          print "Executing U order, acc is ", accValue, "writeBit is ", writeBit
+          print("Executing U order, acc is ", accValue, "writeBit is ", writeBit)
        binaryValue = str(bin(accValue)[2:].zfill(10))
-       #print "New binary value for address", writeAddress," is", binaryValue
+       #print("New binary value for address", writeAddress," is", binaryValue)
        for bit in range(0, (10)):
            if (binaryValue[bit] == '1'):
                setBit(object.memory, writeBit)
-               # print "setting Bit to 1 = ", bit
+               # print( "setting Bit to 1 = ", bit)
            else:
                clearBit(object.memory, writeBit)
-               # print "setting Bit to 0 = ", bit
+               # print( "setting Bit to 0 = ", bit)
            writeBit = writeBit + 1
        #object.wordAddress[]
        return
@@ -571,7 +572,7 @@ def cli(object):
 # This implements the A command (opcode)
    def execute_A():
        if (object.debugMode):
-          print "Executing A order."
+          print("Executing A order.")
        if (object.wordHasAddress[object.programCounter] == True):
            value = getAddressValue(object.wordAddress[object.programCounter])
            addValueToAccumulator(value)
@@ -580,32 +581,32 @@ def cli(object):
 # This implements the O command (opcode)
    def execute_O():
        if (object.debugMode):
-          print "Executing O order, program counter is", object.programCounter
+          print("Executing O order, program counter is", object.programCounter)
        if (object.wordHasAddress[object.programCounter] == True):
            #address = object.wordAddress[object.programCounter]
            orderValue = getOrderValue(object.wordAddress[object.programCounter])
            #myOpCode = get_opcode(address)
-           #print "Order Value is ", orderValue
+           #print("Order Value is ", orderValue)
            ch = inv_opcodes[orderValue]
-           #print "{0:1}".format(testBit(object.ot, bit)),
-           print "{0}".format(ch[0].rstrip())
+           #print("{0:1}".format(testBit(object.ot, bit)),)
+           print("{0}".format(ch[0].rstrip()))
            # TODO - This is a poors man's exit, once the S command is implemented, this can be deleted.
            if (ch[0] == "&"):
-               print "Hit location 56"
-               print "This machine has a limited implementation of the EDSAC instruction set."
-               print "It was implemented to demonstrate the original \"Hello!World\" program written for EDSAC."
-               print "Therefore, we will reset the machine at this point."
-               x = raw_input("Press enter to reset machine...")
+               print("Hit location 56")
+               print("This machine has a limited implementation of the EDSAC instruction set.")
+               print("It was implemented to demonstrate the original \"Hello!World\" program written for EDSAC.")
+               print( "Therefore, we will reset the machine at this point.")
+               x = input("Press enter to reset machine...")
                reset()
        return
 
 # This implements the Z command (opcode)
    def execute_Z():
        if (object.debugMode):
-          print "Executing Z order."
-       print "beep.beep.beep."
+          print( "Executing Z order.")
+       print("beep.beep.beep.")
        ##os.system("beep -f 555 -l 460")
-       print "Stopping machine, until reset button is pressed (enter reset)."
+       print("Stopping machine, until reset button is pressed (enter reset).")
        object.executing = False
 
 # This decodes the opcode (first 5 bits of insruction)
@@ -613,7 +614,7 @@ def cli(object):
 
        opcodeLetter = line[0]
        opcode = opcodes[opcodeLetter]
-       #print "Opcode found for letter", opcodeLetter, ", it is ", opcode
+       #print( "Opcode found for letter", opcodeLetter, ", it is ", opcode)
        return opcode
 
 # This loads a tape (file) into memory
@@ -623,25 +624,25 @@ def cli(object):
       startWord = 31
       currentWord = startWord
       currentBit = startWord * object.wordSize
-      print "This command will load a program starting at word,",startWord,", which is bit",currentBit,"."
-      filename = raw_input("Enter filename containing tape ->")
+      print("This command will load a program starting at word,",startWord,", which is bit",currentBit,".")
+      filename = input("Enter filename containing tape ->")
       try:
           file=open(filename, "r")
       except IOError:
-          print "<ERROR>: File not found\n"
+          print("<ERROR>: File not found\n")
           return
       for line in file:
-         print line,
+         print(line,)
          if line[0] != "#":
             object.wordOpcode[currentWord]=line[0]
             opcode = decode_opcode(line)
-            #print "Loading ", opcode, " at word ", currentWord, "and bit ", currentBit
+            #print("Loading ", opcode, " at word ", currentWord, "and bit ", currentBit)
             if myIsDigit(line[1]):
                strAddress, operandType = decode_address_and_operand_type(line)
                address = int(strAddress)
                object.wordOperandType[currentWord] = operandType
                binaryAddress = str(bin(address)[2:].zfill(10))
-               print "Address is ", address, ", binary address is ", binaryAddress
+               print( "Address is ", address, ", binary address is ", binaryAddress)
                object.wordHasAddress[currentWord] = True
                object.wordAddress[currentWord] = address
             else:
@@ -649,7 +650,7 @@ def cli(object):
                # If the address is missing, then the documentations states it is assumed 0
                address = 0
                binaryAddress = str(bin(address)[2:].zfill(10))
-               #print "No address"
+               #print( "No address")
                object.wordOperandType[currentWord] = line[1]
             for bit in opcode:
                 if (bit == '1'):
@@ -670,40 +671,40 @@ def cli(object):
                 setBit(object.memory, currentBit)
             else:
                 clearBit(object.memory, currentBit)
-            #junk = raw_input("Press enter to continue...")
+            #junk = input("Press enter to continue...")
             currentWord = currentWord + 1
             currentBit = currentWord * object.wordSize
          #else:
-            #print "Comment, skipping."
+            #print("Comment, skipping.")
       object.programLoaded = True
 
         
 # This allows you to list the program loaded
    def list():
        if (object.programLoaded == True):
-          print "Listing assembler program..."
+          print("Listing assembler program...")
           for address in sorted(object.wordOpcode.iterkeys()):
-             print "Address %s has opcode %s, operand type %s" % (address, object.wordOpcode[address], object.wordOperandType[address]),
+             print( "Address %s has opcode %s, operand type %s" % (address, object.wordOpcode[address], object.wordOperandType[address]),)
              if (object.wordHasAddress[address] == True):
-                print "and it has address",
-                print object.wordAddress[address]
+                print("and it has address",)
+                print(bject.wordAddress[address])
              else:
-                print ", no address"
-          x = raw_input("program loaded, press enter to continue...")
+                print(", no address")
+          x = input("program loaded, press enter to continue...")
        else:
-          x = raw_input("No program loaded, press enter to continue...")
+          x = input("No program loaded, press enter to continue...")
 
    def get_opcode(word):
        startBit = word * object.wordSize
        opcode = str(testBit(object.memory,startBit)) + str(testBit(object.memory,startBit+1)) + str(testBit(object.memory,startBit+2)) + str(testBit(object.memory,startBit+3))+str(testBit(object.memory,startBit+4))
-       #print "Opcode = ", opcode
-       #x = raw_input("Press enter:")
+       #print( "Opcode = ", opcode)
+       #x = input("Press enter:")
        return opcode
 
 # This copies the current instruction to the order tank
    def copyInstructiontoOT(address):
        # type: (object) -> object
-       #print "Copying address ", address, "to order tank."
+       #print("Copying address ", address, "to order tank.")
        bitNumber = address * object.wordSize
        otBit = 0
        for bit in range(bitNumber, (object.otSize+bitNumber)):
@@ -715,20 +716,20 @@ def cli(object):
 
 # This copies the program counter to the sequence control registers (which was the program counter in the actual EDSAC)
    def copyPCtoSCR(updatedSCR):
-       # print "Copying ", updatedSCR, "to SCR"
+       # print("Copying ", updatedSCR, "to SCR")
        for bit in range(0, (object.scrSize)):
            if (updatedSCR[bit] == '1'):
-               # print "Setting bit", bit, "to 1"
+               # print("Setting bit", bit, "to 1")
                setBit(object.scr, bit)
            else:
                clearBit(object.scr, bit)
-               # print "Setting bit", bit, "to 0"
+               # print("Setting bit", bit, "to 0")
                # scr()
 
 # This enables step mode in the simulator so that you can execute one instruction at a time
    def step():
        if object.programLoaded == False:
-          print "No program loaded."
+          print("No program loaded.")
           return
        object.stepMode = True
        start()
@@ -737,15 +738,15 @@ def cli(object):
    def start():
 
       if object.programLoaded == False:
-         print "No program loaded."
+         print("No program loaded.")
          return
 
       object.executing = True
 
       if (object.stepMode == True):
-          print "In step mode.."
+          print("In step mode..")
 
-      print "Starting execution at word ", object.programCounter
+      print("Starting execution at word ", object.programCounter)
 
       opcodeExecution = {
           '00111': execute_U,
@@ -763,17 +764,17 @@ def cli(object):
          opcode = get_opcode(object.programCounter)
          updatedSCR = str(bin(object.programCounter)[2:].zfill(10))
          copyPCtoSCR(updatedSCR)
-         #print "Executing at ", updatedSCR
+         #print("Executing at ", updatedSCR)
 
          try:
             opcodeExecution[opcode]()
             object.programCounter = object.programCounter+1
          except IOError as e:
-            print "I/O error({0}): {1}".format(e.errno, e.strerror)
+            print("I/O error({0}): {1}".format(e.errno, e.strerror))
          except ValueError:
-             print "Value error."
+             print("Value error.")
          except:
-             print "Unexpected error:", sys.exc_info()[0]
+             print("Unexpected error:", sys.exc_info()[0])
              raise
              exit()
 
@@ -789,16 +790,16 @@ def cli(object):
 # This toggles debug mode for more verbose output
    def debug():
        if (object.debugMode == True):
-           print "Turning debug mode off."
+           print("Turning debug mode off.")
            object.debugMode = False
        else:
-           print "Turning debug mode on."
+           print("Turning debug mode on.")
            object.debugMode = True
 
 
 # Helper function for the CLI.
    def do_nothing():
-      print "Doing nothing!"
+      print("Doing nothing!")
 
 # This is the menu for the CLI, actually this is a pattern in Python that
 # uses a dictionary to issue a function call. So if you type the key, the key[index] is executed.
@@ -841,13 +842,13 @@ def cli(object):
    print_welcome()
 
    while True:
-     c1 = raw_input(prompt)
-     #print "Command entered is ", c1
+     c1 = input(prompt)
+     #print("Command entered is ", c1)
      # The following is the PYTHONIC way to do a case statement using a dictionary 
      try:
         options[c1]()
      except (NameError, KeyError):
-        print "Sorry, command not yet implemented."
+        print("Sorry, command not yet implemented.")
 
      
      #if c1 == 'help':
@@ -858,7 +859,7 @@ def cli(object):
      #elif c1 == 'clear':
         #os.system('clear')
      #else
-        #print "Command not yet implemented."
+        #print("Command not yet implemented.")
 
 def main():
   os.system('clear')
