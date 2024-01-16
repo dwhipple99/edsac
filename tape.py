@@ -54,18 +54,18 @@ def load_initial_orders(object):
                     29:'01100 0 0000011111 0',
                     30:'11011 0 0000000110 0' 
                    }
-   print "Loading initial orders in locations 0 to 30."
+   print("Loading initial orders in locations 0 to 30.")
 
    memoryBitLocation = 0
    for orderNumber, order in initialOrders.items():
-       #print "Adding order ", order," to memory location ", orderNumber
+       #print("Adding order ", order," to memory location ", orderNumber)
        for bit in order:
           if (bit != " "):
              if (bit == "1"):
-                #print "Setting ", memoryBitLocation," to 1"
+                #print("Setting ", memoryBitLocation," to 1")
                 setBit(object.memory, memoryBitLocation)
              else:
-                #print "Setting ", memoryBitLocation," to 0"
+                #print("Setting ", memoryBitLocation," to 0")
                 clearBit(object.memory, memoryBitLocation)
 #
              memoryBitLocation = memoryBitLocation + 1
